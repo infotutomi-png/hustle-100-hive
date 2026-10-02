@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hustle 100 Hive</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 114'%3E%3Cpolygon points='50,6 94.2,31.5 94.2,82.5 50,108 5.8,82.5 5.8,31.5' fill='%23000' stroke='%23FE6505' stroke-width='8'/%3E%3Cpolygon points='62,57 56,67.4 44,67.4 38,57 44,46.6 56,46.6' fill='%23FE6505'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#F7F4EF;--panel:#FFFFFF;--ink:#1A1A1A;--hmuted:#6E675F;--line:#E8E2D9;--orange:#FE6505;--honey:#FF9A3C;--orange-ink:#C24A00;--empty:#EFEBE4;--bar:#000000;--bar-ink:#FFFFFF;
+  --display:"Bricolage Grotesque",ui-rounded,"Arial Rounded MT Bold",system-ui,sans-serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --shadow:0 1px 2px rgba(40,30,10,.06),0 6px 20px rgba(40,30,10,.06);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1B1916;--panel:#25221E;--ink:#F5F1EB;--hmuted:#A9A197;--line:#38332D;--orange:#FF7A26;--orange-ink:#FF8A3D;--empty:#322D28;--bar:#000000;--shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);}}
+:root[data-theme="dark"]{--bg:#1B1916;--panel:#25221E;--ink:#F5F1EB;--hmuted:#A9A197;--line:#38332D;--orange:#FF7A26;--orange-ink:#FF8A3D;--empty:#322D28;--bar:#000000;--shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;min-height:100%}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--orange);outline-offset:2px;border-radius:8px}
+
+/* Top bar */
+.top{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px clamp(16px,3vw,32px);background:var(--bar);color:var(--bar-ink);flex-wrap:wrap}
+.top::after{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='97' viewBox='0 0 56 97'%3E%3Cpath d='M28 0l28 16v32L28 64 0 48V16zM28 64l28 16v32M0 80l28-16' fill='none' stroke='%23FE6505' stroke-opacity='.13' stroke-width='1.5'/%3E%3C/svg%3E");background-size:42px 73px;pointer-events:none;mask-image:linear-gradient(90deg,transparent 30%,#000 100%)}
+.brand{display:flex;align-items:center;gap:12px;position:relative;z-index:1}
+.brand .logo{height:46px;width:auto;display:block}
+.brand .div{width:1px;height:34px;background:rgba(255,255,255,.25)}
+.brand h1{font-family:var(--display);font-weight:800;font-size:1.75rem;margin:0;line-height:1;letter-spacing:-.01em;white-space:nowrap}
+@media (max-width:520px){.brand .logo{height:36px}.brand h1{font-size:1.25rem}.together span{display:none!important}}
+.brand h1 span{color:var(--orange)}
+.brand small{display:block;color:#BDB6AC;font-size:.8rem;margin-top:3px}
+.together{position:relative;z-index:1;display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);padding:6px 14px 6px 8px;border-radius:999px}
+.together svg{flex:none}
+.together b{font-family:var(--display);font-size:1.3rem;line-height:1;display:block}
+.together span{font-size:.78rem;color:#BDB6AC;display:block}
+
+.layout{display:grid;grid-template-columns:270px 1fr;min-height:calc(100vh - 72px)}
+@media (max-width:860px){.layout{grid-template-columns:minmax(0,1fr)}}
+.layout>*{min-width:0}
+
+/* Sidebar */
+aside{padding:20px 16px;border-right:1px solid var(--line);background:var(--panel)}
+@media (max-width:860px){aside{border-right:0;border-bottom:1px solid var(--line);padding:14px 16px}}
+aside h2{font-weight:700;font-family:var(--display);font-size:1.1rem;margin:0 4px 12px}
+.learners{list-style:none;margin:0 0 14px;padding:0;display:flex;flex-direction:column;gap:6px}
+@media (max-width:860px){.learners{flex-direction:row;overflow-x:auto;padding-bottom:6px}}
+.lbtn{width:100%;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid transparent;border-radius:14px;background:none;text-align:left;transition:background .15s}
+@media (max-width:860px){.lbtn{width:auto;min-width:170px;border-color:var(--line)}}
+.lbtn:hover{background:var(--bg)}
+.lbtn[aria-current="true"]{background:var(--bg);border-color:var(--orange)}
+.lbtn .nm{font-weight:700;display:block;line-height:1.2}
+.lbtn .aw{font-size:.78rem;color:var(--hmuted)}
+.lbtn .pts{font-family:var(--display);font-weight:800;font-size:1.1rem;color:var(--orange-ink)}
+.add{display:flex;gap:6px}
+.add input{flex:1;min-width:0;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg)}
+.add input:focus{border-color:var(--orange);outline:none}
+.btn{padding:10px 16px;border-radius:12px;border:1.5px solid var(--line);background:var(--panel);font-weight:700;transition:transform .1s,background .15s}
+.btn:hover{background:var(--bg)}
+.btn:active{transform:translateY(1px)}
+.btn.primary{background:var(--orange);border-color:var(--orange);color:#1A1A1A;box-shadow:0 3px 0 #B84600}
+.btn.primary:hover{background:var(--honey)}
+.btn.primary:active{box-shadow:0 1px 0 #B84600;transform:translateY(2px)}
+.btn.quiet{border-color:transparent;background:none;color:var(--hmuted);font-weight:600}
+.note{font-size:.82rem;color:var(--hmuted);margin:12px 4px 0}
+
+/* Main */
+main{padding:clamp(18px,3vw,36px);min-width:0;max-width:1240px}
+.hero{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;background:var(--panel);border-radius:24px;padding:clamp(18px,3vw,30px);box-shadow:var(--shadow);margin-bottom:18px}
+@media (max-width:640px){.hero{grid-template-columns:1fr;justify-items:center;text-align:center}}
+.hero h2{font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,5vw,3.4rem);margin:0;line-height:.95;letter-spacing:-.02em}
+.chip{display:inline-flex;align-items:center;gap:6px;margin-top:10px;padding:5px 12px 5px 8px;border-radius:999px;background:var(--empty);font-weight:700;font-size:.9rem}
+.chip.won{background:var(--orange);color:#1A1A1A}
+.cheer{font-size:1.05rem;margin:14px 0 0;max-width:46ch}
+.cheer b{color:var(--orange-ink)}
+.wins{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+@media (max-width:640px){.wins{justify-content:center}}
+.win{display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 6px;border-radius:12px;background:var(--bg);font-size:.86rem;border:0;text-align:left}
+.win i{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;color:#fff;font-style:normal;font-family:var(--display);font-weight:800;font-size:.78rem;flex:none}
+.win small{color:var(--hmuted)}
+.meter{position:relative;width:190px;height:212px;flex:none}
+.meter svg{width:100%;height:100%;overflow:visible}
+.meter .num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
+.meter .num b{font-family:var(--display);font-weight:800;font-size:3.6rem;line-height:1;color:var(--ink);text-shadow:0 1px 0 rgba(255,255,255,.4)}
+.meter .num span{font-size:.85rem;font-weight:700;color:var(--ink);opacity:.75}
+.wave{animation:wave 6s linear infinite}
+.wave2{animation:wave 9s linear infinite reverse;opacity:.5}
+@keyframes wave{from{transform:translateX(0)}to{transform:translateX(-120px)}}
+.level{transition:transform 1s cubic-bezier(.3,1.2,.4,1)}
+
+/* Ladder */
+.ladder{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:4px;background:var(--panel);border-radius:24px;padding:20px 16px 16px;box-shadow:var(--shadow);margin-bottom:26px}
+.ladder .track{position:absolute;left:10%;right:10%;top:44px;height:6px;border-radius:3px;background:var(--empty)}
+.ladder .track i{position:absolute;inset:0 auto 0 0;background:var(--orange);border-radius:3px;transition:width 1s ease}
+.badge{position:relative;text-align:center;z-index:1}
+.badge svg{width:56px;height:62px;display:block;margin:0 auto;transition:transform .3s}
+.badge.done svg{transform:scale(1.05)}
+.badge.now svg{filter:drop-shadow(0 0 0 transparent);animation:glow 2.4s ease-in-out infinite}
+@keyframes glow{50%{transform:scale(1.1)}}
+.badge b{display:block;font-family:var(--display);font-size:.92rem;line-height:1.15;margin-top:6px}
+.badge span{font-size:.76rem;color:var(--hmuted)}
+.badge:not(.done) b{color:var(--hmuted)}
+
+/* Areas */
+.sect{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 12px}
+.sect h3{font-weight:700;font-family:var(--display);font-size:1.35rem;margin:0}
+.sect p{margin:0;color:var(--hmuted);font-size:.9rem}
+.hive{display:grid;grid-template-columns:repeat(auto-fill,minmax(172px,1fr));gap:14px}
+@media (max-width:560px){.hive{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{padding:12px 10px 10px}.card h4{font-size:.88rem}.ico{width:28px;height:28px}.ladder{padding:16px 6px 12px}.badge svg{width:40px;height:45px}.ladder .track{top:36px}.badge b{font-size:.78rem}.badge span{font-size:.68rem}}
+.card{background:var(--panel);border-radius:20px;box-shadow:var(--shadow);padding:14px 14px 12px;position:relative;overflow:hidden;border-top:5px solid var(--c)}
+.card.full{background:color-mix(in srgb,var(--c) 10%,var(--panel))}
+.card header{display:flex;flex-direction:column;align-items:flex-start;gap:8px;margin-bottom:6px}
+.ico{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:color-mix(in srgb,var(--c) 16%,transparent);color:var(--c);flex:none}
+.ico svg{width:20px;height:20px}
+.card header>div{min-width:0}
+.card h4{font-family:var(--display);font-weight:700;font-size:.95rem;margin:0;line-height:1.15;overflow-wrap:break-word;min-height:2.3em}
+.card .ct{font-size:.78rem;color:var(--hmuted)}
+.card svg.cells{width:100%;height:auto;display:block;overflow:visible;margin:4px 0}
+.bar{height:6px;border-radius:3px;background:var(--empty);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--c);border-radius:3px;transition:width .6s ease}
+.star{position:absolute;top:10px;right:12px;font-size:.75rem;font-weight:700;color:var(--c)}
+.hx{cursor:pointer}
+.hx polygon{transition:fill .25s,transform .2s;transform-box:fill-box;transform-origin:center}
+.hx:hover polygon,.hx:focus-visible polygon{transform:scale(1.1)}
+.hx:focus{outline:none}
+.hx:focus-visible polygon{stroke:var(--ink);stroke-width:2.5;stroke-opacity:1}
+.hx text{font-family:var(--display);font-weight:800;font-size:12.5px;pointer-events:none}
+.hx.pop polygon{animation:pop .6s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pop{0%{transform:scale(.4)}100%{transform:scale(1)}}
+
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px;padding-top:18px;border-top:1px solid var(--line)}
+
+/* Empty */
+.empty{max-width:460px;margin:8vh auto;text-align:center}
+.empty h2{font-weight:700;font-family:var(--display);font-size:2rem;margin:14px 0 6px}
+.empty p{color:var(--hmuted)}
+.bob{animation:bob 3s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+
+/* Sheet */
+.sheet{position:fixed;right:0;top:0;bottom:0;width:min(420px,100%);background:var(--panel);box-shadow:-20px 0 50px rgba(0,0,0,.18);transform:translateX(105%);transition:transform .3s cubic-bezier(.3,1,.4,1);z-index:20;display:flex;flex-direction:column;overflow-y:auto}
+.sheet.open{transform:none}
+.sheet .band{background:var(--c);color:#fff;padding:calc(18px + env(safe-area-inset-top,0px)) 24px 22px;position:relative}
+.sheet .band .area{display:flex;align-items:center;gap:8px;font-weight:700;font-size:.9rem;opacity:.95}
+.sheet .band .area svg{width:18px;height:18px}
+.sheet .band .num{font-family:var(--display);font-weight:800;font-size:1rem;margin-top:14px;opacity:.85}
+.sheet .band h3{font-weight:700;font-family:var(--display);font-size:1.75rem;line-height:1.08;margin:2px 0 0}
+.sheet .band .close{position:absolute;right:12px;top:calc(10px + env(safe-area-inset-top,0px));border:0;background:rgba(255,255,255,.2);color:#fff;width:36px;height:36px;border-radius:50%;font-size:1.3rem;line-height:1}
+.sheet .body{padding:20px 24px calc(24px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:14px}
+.sheet .outcome{margin:0;font-size:1.02rem}
+.sheet .done-line{display:flex;align-items:center;gap:8px;font-weight:700;color:var(--orange-ink);background:color-mix(in srgb,var(--orange) 14%,transparent);padding:10px 12px;border-radius:12px;margin:0}
+.sheet label{font-weight:700;font-size:.92rem}
+.sheet textarea{width:100%;min-height:72px;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);resize:vertical}
+.sheet textarea:focus{border-color:var(--orange);outline:none}
+.sheet .row{display:flex;gap:8px;flex-wrap:wrap}
+.sheet .row .primary{flex:1}
+.scrim{position:fixed;inset:0;background:rgba(20,15,5,.35);opacity:0;pointer-events:none;transition:opacity .2s;z-index:15}
+.scrim.open{opacity:1;pointer-events:auto}
+
+/* Celebrate */
+.celebrate{position:fixed;inset:0;display:grid;place-items:center;z-index:40;pointer-events:none;opacity:0;transition:opacity .3s;background:rgba(20,15,5,.45)}
+.celebrate.show{opacity:1;pointer-events:auto}
+.celebrate .card2{background:var(--panel);border-radius:28px;padding:34px 40px 30px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.35);transform:scale(.7) rotate(-3deg);transition:transform .5s cubic-bezier(.2,1.7,.4,1);max-width:90vw}
+.celebrate.show .card2{transform:none}
+.celebrate .card2 svg{animation:spin 1s cubic-bezier(.2,1.4,.4,1)}
+@keyframes spin{from{transform:rotate(-180deg) scale(.3)}}
+.celebrate h2{font-family:var(--display);font-weight:800;font-size:2.6rem;margin:12px 0 4px;line-height:1}
+.celebrate p{margin:0 0 20px;color:var(--hmuted);font-size:1.05rem}
+.bit{position:fixed;width:16px;height:18px;z-index:41;pointer-events:none}
+.toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:14px;font-weight:600;font-size:.94rem;z-index:50;opacity:0;transition:opacity .2s,transform .25s;pointer-events:none;max-width:90vw}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* Tabs + challenge list */
+.tabs{display:inline-flex;gap:4px;padding:4px;background:var(--panel);border-radius:14px;box-shadow:var(--shadow);margin-bottom:18px}
+.tabs button{border:0;background:none;padding:9px 16px;border-radius:10px;font-weight:700;color:var(--hmuted)}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+.lhead{background:var(--panel);border-radius:24px;box-shadow:var(--shadow);padding:clamp(18px,3vw,28px);margin-bottom:16px}
+.lhead h2{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,2.6rem);margin:0;line-height:1}
+.lhead p{margin:8px 0 16px;color:var(--hmuted);max-width:60ch}
+.search{width:100%;max-width:420px;padding:11px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg)}
+.search:focus{border-color:var(--orange);outline:none}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.fchip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px 6px 8px;border-radius:999px;border:1.5px solid var(--line);background:var(--panel);font-weight:600;font-size:.86rem}
+.fchip svg{width:16px;height:16px;color:var(--c,var(--ink))}
+.fchip[aria-pressed="true"]{background:var(--c,var(--ink));border-color:var(--c,var(--ink));color:#fff}
+.fchip[aria-pressed="true"] svg{color:#fff}
+.agroup{background:var(--panel);border-radius:20px;box-shadow:var(--shadow);margin-bottom:14px;overflow:hidden;border-left:6px solid var(--c)}
+.agroup>header{display:flex;align-items:center;gap:12px;padding:16px 18px 6px}
+.agroup>header h3{font-weight:700;font-family:var(--display);font-size:1.2rem;margin:0}
+.agroup>header .cnt{color:var(--hmuted);font-size:.85rem;margin-left:auto;text-align:right}
+.clist{list-style:none;margin:0;padding:4px 8px 10px}
+.citem{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:start;width:100%;padding:10px;border:0;background:none;text-align:left;border-radius:12px}
+.citem:hover{background:var(--bg)}
+.cnum{width:38px;height:42px;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:.9rem;color:var(--c);position:relative}
+.cnum svg{position:absolute;inset:0;width:100%;height:100%}
+.cnum b{position:relative}
+.citem.on .cnum{color:#fff}
+.citem h4{margin:0;font-size:1rem;font-weight:700;line-height:1.3}
+.citem p{margin:2px 0 0;color:var(--hmuted);font-size:.9rem;line-height:1.45}
+.tick{font-size:.78rem;font-weight:700;color:var(--c);white-space:nowrap;padding-top:4px}
+.none{color:var(--hmuted);text-align:center;padding:30px}
+@media (max-width:640px){.filters{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;margin-inline:-4px}.fchip{white-space:nowrap}.citem{grid-template-columns:auto 1fr}.tick{grid-column:2;padding:0}}
+
+
+/* Overview */
+.obtn{width:100%;display:flex;align-items:center;gap:10px;padding:10px 12px;margin-bottom:16px;border-radius:14px;border:1.5px solid var(--line);background:var(--bg);font-weight:700;text-align:left}
+.obtn svg{width:20px;height:20px;color:var(--orange)}
+.obtn[aria-current="true"]{border-color:var(--orange);background:color-mix(in srgb,var(--orange) 10%,var(--panel))}
+.ohead{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.ohead h2{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,2.6rem);margin:0;line-height:1}
+.ohead p{margin:6px 0 0;color:var(--hmuted)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:16px}
+@media (max-width:760px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stat{background:var(--panel);border-radius:18px;box-shadow:var(--shadow);padding:14px 16px}
+.stat b{display:block;font-family:var(--display);font-weight:800;font-size:2rem;line-height:1.05}
+.stat span{color:var(--hmuted);font-size:.86rem}
+.ogrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:900px){.ogrid{grid-template-columns:1fr}}
+.panel{background:var(--panel);border-radius:20px;box-shadow:var(--shadow);padding:18px 18px 12px;min-width:0}
+.panel.wide{grid-column:1/-1}
+.panel h3{font-weight:700;font-family:var(--display);font-size:1.15rem;margin:0}
+.panel .sub{color:var(--hmuted);font-size:.86rem;margin:2px 0 10px}
+.panel .phead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.panel select{padding:6px 10px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);font:inherit;font-size:.86rem}
+.prow{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;width:100%;padding:8px 6px;border:0;border-top:1px solid var(--line);background:none;text-align:left}
+.panel .sub+.prow,.phead+.prow{border-top:0}
+.prow:hover{background:var(--bg)}
+.prow .nm{font-weight:700}
+.prow .meta{color:var(--hmuted);font-size:.84rem;display:block}
+.pill{font-size:.8rem;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--empty);white-space:nowrap}
+.pill.warn{background:color-mix(in srgb,#E2504F 16%,transparent);color:#C0392B}
+.pill.go{background:color-mix(in srgb,var(--orange) 18%,transparent);color:var(--orange-ink)}
+.okmsg{color:var(--hmuted);padding:10px 6px 14px;margin:0}
+.bars{display:flex;flex-direction:column;gap:8px;padding:4px 0 8px}
+.brow{display:grid;grid-template-columns:minmax(120px,240px) 1fr 92px;align-items:center;gap:10px;font-size:.88rem}
+@media (max-width:560px){.brow{grid-template-columns:1fr 92px;row-gap:4px;font-size:.84rem}.brow .lab{grid-column:1/-1}.bars{gap:12px}}
+.brow .lab{display:flex;align-items:center;gap:8px;min-width:0}
+.brow .lab svg{width:16px;height:16px;flex:none;color:var(--c)}
+.brow .lab span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.brow .track2{height:14px;border-radius:7px;background:var(--empty);overflow:hidden}
+.brow .track2 i{display:block;height:100%;background:var(--c);border-radius:7px}
+.brow b{text-align:left;font-family:var(--display);white-space:nowrap}
+.brow .flag{font-size:.74rem;font-weight:700;color:#C0392B;margin-left:2px;white-space:nowrap}
+.dist{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:4px 0 8px}
+.dist div{background:var(--bg);border-radius:12px;padding:10px;text-align:center}
+.dist b{display:block;font-family:var(--display);font-size:1.5rem;line-height:1}
+.dist span{font-size:.78rem;color:var(--hmuted)}
+.feed .prow i{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;color:#fff;font-style:normal;font-family:var(--display);font-weight:800;font-size:.78rem}
+
+/* Focus + undo */
+.nextbox{margin-top:16px}
+.nlab{display:block;font-weight:700;font-size:.86rem;color:var(--hmuted);margin-bottom:6px}
+@media (max-width:640px){.nlab{text-align:center}}
+.nextbox .wins{margin-top:0}
+.win.focus{background:color-mix(in srgb,var(--orange) 12%,var(--panel));border:1.5px dashed var(--orange)}
+.hx.fx polygon{stroke-dasharray:5 3}
+.ftag{display:inline-block;font-size:.72rem;font-weight:700;color:var(--orange-ink);background:color-mix(in srgb,var(--orange) 15%,transparent);padding:1px 8px;border-radius:999px;margin-left:6px;vertical-align:2px}
+.legend{display:flex;align-items:center;gap:6px;font-size:.84rem;color:var(--hmuted)}
+.legend svg{width:16px;height:18px}
+.toast{display:flex;align-items:center;gap:14px}
+.toast.act{pointer-events:auto}
+.toast button{border:0;background:none;color:var(--honey);font-weight:800;padding:2px 4px;text-decoration:underline;text-underline-offset:3px}
+/* Learner view */
+body.kiosk aside,body.kiosk .tools{display:none}
+body.kiosk .layout{grid-template-columns:minmax(0,1fr)}
+body.kiosk main{margin:0 auto;width:100%}
+.lv{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;display:none;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1.5px solid var(--line);background:var(--panel);box-shadow:var(--shadow);font-weight:700;font-size:.88rem;color:var(--hmuted);overflow:hidden;user-select:none;-webkit-user-select:none;touch-action:none}
+body.kiosk .lv{display:inline-flex}
+.lv i{position:absolute;inset:0 auto 0 0;width:0;background:color-mix(in srgb,var(--orange) 30%,transparent)}
+.lv span{position:relative}
+.lv.hold i{width:100%;transition:width 1.4s linear}
+.btn.show{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* GitHub version: header actions + sign-in */
+.hright{display:flex;align-items:center;gap:10px;position:relative;z-index:1}
+.sout{border:1px solid rgba(255,255,255,.25);background:none;color:#fff;border-radius:999px;padding:7px 14px;font-weight:600;font-size:.85rem}
+.sout:hover{background:rgba(255,255,255,.1)}
+body.kiosk .sout{display:none}
+.login{min-height:100vh;display:grid;place-items:center;padding:24px;background:var(--bar)}
+.login .lcard{background:var(--panel);border-radius:24px;padding:32px 28px;width:min(420px,100%);box-shadow:0 30px 80px rgba(0,0,0,.35);text-align:center}
+.login svg{width:64px;height:73px;margin:0 auto 10px;display:block}
+.login h1{font-family:var(--display);font-weight:800;font-size:2rem;margin:0;line-height:1}
+.login h1 span{color:var(--orange)}
+.login p{color:var(--hmuted);margin:10px 0 20px}
+.login form{display:flex;flex-direction:column;gap:10px;text-align:left}
+.login label{font-weight:700;font-size:.9rem}
+.login input{padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);font:inherit;color:inherit}
+.login input:focus{border-color:var(--orange);outline:none}
+.login .msg{min-height:1.4em;font-size:.9rem;margin:4px 0 0;text-align:center}
+.login .msg.err{color:#C0392B}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<section class="login" id="login" hidden>
+  <div class="lcard">
+    <svg viewBox="0 0 100 114" role="img" aria-label="Hustle Hive"><polygon points="50.0,6.0 94.2,31.5 94.2,82.5 50.0,108.0 5.8,82.5 5.8,31.5" fill="none" stroke="#FE6505" stroke-width="5.5"/><polygon points="62.0,57.0 56.0,67.4 44.0,67.4 38.0,57.0 44.0,46.6 56.0,46.6" fill="#FE6505"/><polygon points="62.0,31.5 56.0,41.9 44.0,41.9 38.0,31.5 44.0,21.1 56.0,21.1" fill="#FE6505"/><polygon points="84.1,44.2 78.1,54.6 66.1,54.6 60.1,44.2 66.1,33.9 78.1,33.9" fill="#FE6505"/><polygon points="84.1,69.8 78.1,80.1 66.1,80.1 60.1,69.8 66.1,59.4 78.1,59.4" fill="#FE6505"/><polygon points="62.0,82.5 56.0,92.9 44.0,92.9 38.0,82.5 44.0,72.1 56.0,72.1" fill="#FE6505"/><polygon points="39.9,69.8 33.9,80.1 21.9,80.1 15.9,69.8 21.9,59.4 33.9,59.4" fill="#FE6505"/><polygon points="39.9,44.2 33.9,54.6 21.9,54.6 15.9,44.2 21.9,33.9 33.9,33.9" fill="#FE6505"/></svg>
+    <h1>Hustle <span>100</span></h1>
+    <p>Staff sign-in. We'll email you a secure sign-in link.</p>
+    <form id="loginForm">
+      <label for="email">Work email</label>
+      <input id="email" type="email" autocomplete="email" required placeholder="name@hustlehive.co.uk">
+      <button class="btn primary" type="submit" id="sendLink">Email me a sign-in link</button>
+      <p class="msg" id="loginMsg" role="status"></p>
+    </form>
+  </div>
+</section>
+<div id="hive-root" hidden>
+<header class="top">
+  <div class="brand"><svg class="logo" viewBox="0 0 100 114" width="42" height="48" role="img" aria-label="Hustle Hive"><polygon points="50.0,6.0 94.2,31.5 94.2,82.5 50.0,108.0 5.8,82.5 5.8,31.5" fill="none" stroke="#FE6505" stroke-width="5.5"/><polygon points="62.0,57.0 56.0,67.4 44.0,67.4 38.0,57.0 44.0,46.6 56.0,46.6" fill="#FE6505"/><polygon points="62.0,31.5 56.0,41.9 44.0,41.9 38.0,31.5 44.0,21.1 56.0,21.1" fill="#FE6505"/><polygon points="84.1,44.2 78.1,54.6 66.1,54.6 60.1,44.2 66.1,33.9 78.1,33.9" fill="#FE6505"/><polygon points="84.1,69.8 78.1,80.1 66.1,80.1 60.1,69.8 66.1,59.4 78.1,59.4" fill="#FE6505"/><polygon points="62.0,82.5 56.0,92.9 44.0,92.9 38.0,82.5 44.0,72.1 56.0,72.1" fill="#FE6505"/><polygon points="39.9,69.8 33.9,80.1 21.9,80.1 15.9,69.8 21.9,59.4 33.9,59.4" fill="#FE6505"/><polygon points="39.9,44.2 33.9,54.6 21.9,54.6 15.9,44.2 21.9,33.9 33.9,33.9" fill="#FE6505"/></svg><h1>Hustle <span>100</span></h1></div>
+  <div class="hright"><div class="together" id="together"></div><button class="sout" id="signout" type="button">Sign out</button></div>
+</header>
+<div class="layout">
+  <aside>
+    <button class="obtn" id="obtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Group overview</button>
+    <h2>Learners</h2>
+    <ul class="learners" id="list"></ul>
+    <form class="add" id="addForm">
+      <input id="newName" placeholder="e.g. HH-014" maxlength="24" aria-label="New learner code">
+      <button class="btn primary" id="addBtn" type="submit">Add</button>
+    </form>
+    <p class="note" id="status">Connecting…</p>
+  </aside>
+  <main id="main"></main>
+</div>
+<div class="scrim" id="scrim"></div>
+<section class="sheet" id="sheet" aria-hidden="true" role="dialog" aria-label="Challenge details"></section>
+<div class="celebrate" id="cel"><div class="card2" id="celCard"></div></div>
+<div class="toast" id="toast" role="status"></div>
+<button class="lv" id="lv" aria-label="Hold to exit learner view"><i></i><span>Hold to exit learner view</span></button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+/* ===== Settings: paste your own two values from Supabase (Project Settings > API) ===== */
+const SUPABASE_URL = "https://efpqmizxfbjdvcnyjwjb.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVmcHFtaXp4ZmJqZHZjbnlqd2piIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA5NzU3MzUsImV4cCI6MjEwNjU1MTczNX0.EnK-HbsBSomsM6PpweGpyyZWzUOyH2rjskXNrY9iKlY";
+/* ======================================================================================= */
+
+const CH = [[1, "Identify my strengths", "Identify at least three personal strengths, interests or qualities and explain how they can help in learning or life."], [2, "Set a meaningful goal", "Choose a realistic personal, learning or practical goal and explain why it matters."], [3, "Plan the steps", "Break a goal or challenge into manageable steps, resources and timescales."], [4, "Try something new", "Take part in an unfamiliar or challenging activity and reflect on the experience."], [5, "Keep going when it is difficult", "Demonstrate persistence when a task becomes difficult, using support or a new approach rather than simply stopping."], [6, "Use a strategy to manage frustration", "Recognise a trigger or difficult feeling and use an agreed strategy to regulate and return to the task."], [7, "Ask for help appropriately", "Recognise when support is needed and ask a suitable person for help in an appropriate way."], [8, "Learn from feedback", "Receive constructive feedback, identify one useful point and apply it to improve work or behaviour."], [9, "Complete a sustained challenge", "Stay engaged with a meaningful challenge or project over an extended period and bring it to a clear outcome."], [10, "Review progress and set the next goal", "Review what has improved, identify an achievement and choose a sensible next step."], [11, "Know my local community", "Identify important places, organisations, services or people in the local area."], [12, "Understand local services", "Find out what at least two local services or organisations do and who they support."], [13, "Contribute to a shared space", "Take responsibility for improving, maintaining or organising a shared learning or community space."], [14, "Take part in a community project", "Contribute positively to a supervised project that benefits other people or the local area."], [15, "Support another person", "Offer appropriate practical help, encouragement or teamwork to another learner or community member."], [16, "Explore local heritage", "Investigate a local place, person, event or feature and communicate something learned."], [17, "Understand rights and responsibilities", "Explore examples of rights, responsibilities, rules and respectful participation in a community."], [18, "Investigate a local issue", "Identify a community or environmental issue, gather information and consider different viewpoints."], [19, "Plan a positive action", "Work individually or with others to plan an achievable action that could make a positive difference."], [20, "Make a positive impact", "Complete and review a community action, explaining what difference was made and what could happen next."], [21, "Understand a healthy lifestyle", "Identify factors that contribute to physical and emotional wellbeing."], [22, "Try a physical activity", "Take part safely in a physical or outdoor activity and reflect on how it felt."], [23, "Make a healthy food choice", "Compare food or drink options and make a reasoned choice linked to health, energy or balance."], [24, "Understand sleep and recovery", "Explore how sleep, rest and routines can affect mood, energy, concentration and health."], [25, "Build a positive routine", "Create and follow a simple routine that supports learning, wellbeing or independence."], [26, "Recognise emotions and triggers", "Identify emotions, common triggers and early signs that support may be needed."], [27, "Use a wellbeing strategy", "Practise at least one safe, agreed strategy for managing stress, anxiety, frustration or overload."], [28, "Connect with nature for wellbeing", "Take part in a nature-based activity and describe at least one effect on wellbeing."], [29, "Make a personal self-care plan", "Identify realistic activities, people and routines that can support personal wellbeing."], [30, "Review my wellbeing toolkit", "Review which strategies work best personally and identify how and when to use them."], [31, "Use tools and equipment safely", "Follow instructions, PPE requirements and safe working practices when using an appropriate tool or item of equipment."], [32, "Measure and mark accurately", "Use suitable measuring and marking tools accurately for a practical task."], [33, "Turn an idea into a design", "Communicate a practical idea using sketches, notes, dimensions or a simple design specification."], [34, "Create a digital design", "Use CAD or another design tool to produce a digital model, drawing or layout."], [35, "Make a prototype", "Produce an early version or model to test an idea before making the final outcome."], [36, "Manufacture a finished outcome", "Use appropriate processes and equipment to make a completed product or practical outcome."], [37, "Test and evaluate", "Test a practical outcome against agreed criteria and identify strengths and improvements."], [38, "Improve a design or product", "Make a justified change to improve function, quality, appearance or user experience."], [39, "Maintain or repair something", "Complete a safe maintenance, fault-finding or repair task appropriate to the learner and equipment."], [40, "Solve a real-world practical problem", "Plan and complete a practical project that responds to a genuine need, client, user or scenario."], [41, "Organise digital work", "Create, name, save and retrieve files using an agreed folder or cloud structure."], [42, "Use digital tools for a purpose", "Use suitable software or an online tool to complete a real task."], [43, "Stay safe online", "Recognise common online risks and demonstrate safe choices around privacy, passwords, communication and digital footprints."], [44, "Research information critically", "Search for information, compare sources and identify reasons a source may or may not be reliable."], [45, "Create digital content", "Produce a purposeful digital item such as a poster, presentation, video, graphic, document or web content."], [46, "Understand what AI is", "Explain in accessible terms what artificial intelligence is and identify examples of how it is used."], [47, "Use AI to support a task", "Use an AI tool appropriately to support ideation, research, writing, design or problem solving."], [48, "Evaluate AI output", "Check an AI-generated output for accuracy, usefulness, bias, quality or suitability and make improvements."], [49, "Use AI responsibly", "Discuss responsible AI use including privacy, copyright, misinformation, fairness and when human judgement is needed."], [50, "Solve a digital problem independently", "Diagnose and solve an age-appropriate digital problem using logical steps and support resources."], [51, "Explore different creative approaches", "Experience and compare at least two different art, design, media or creative techniques."], [52, "Generate original ideas", "Use a creative thinking method to develop several possible ideas in response to a theme or problem."], [53, "Develop a visual direction", "Create a moodboard, style board or set of references that communicates an intended look or feeling."], [54, "Experiment with materials or media", "Test materials, tools, techniques or digital media and record what was learned."], [55, "Create an original outcome", "Produce an original creative outcome in response to a self-selected or agreed brief."], [56, "Turn an idea into a prototype", "Translate a creative idea into a model, mock-up, sample or prototype."], [57, "Improve through iteration", "Use feedback, testing or self-evaluation to refine a creative outcome."], [58, "Combine digital and practical creativity", "Use both digital and hands-on processes within one creative project."], [59, "Share creative work", "Present, display, explain or showcase a creative outcome appropriately to others."], [60, "Reflect on my creative development", "Identify creative strengths, improvements and a possible next creative challenge."], [61, "Prepare safely for outdoor learning", "Select appropriate clothing, equipment and behaviours for an outdoor activity and understand key risks."], [62, "Observe the natural world", "Identify and record features of a local natural environment, habitat or species."], [63, "Explore a local landscape", "Learn about a local landscape, route, landmark or geographical feature through fieldwork or research."], [64, "Take part in conservation activity", "Contribute safely to a conservation, clean-up or environmental improvement activity."], [65, "Understand sustainability", "Explain examples of sustainable and unsustainable choices in everyday life, design, food, travel or business."], [66, "Reduce waste or reuse resources", "Complete a task that reduces waste, reuses materials or applies circular-economy thinking."], [67, "Explore climate and environmental change", "Investigate an age-appropriate environmental change issue and communicate key findings."], [68, "Complete an outdoor challenge", "Take part in a suitable outdoor challenge requiring preparation, effort and perseverance."], [69, "Work effectively outdoors", "Demonstrate teamwork, communication and responsibility during an outdoor activity."], [70, "Make a positive environmental contribution", "Plan, complete and review an action that benefits the local environment."], [71, "Identify workplace strengths", "Identify personal qualities, skills and interests that could be useful in work or enterprise."], [72, "Develop a product or service idea", "Generate and select an enterprise idea that responds to a customer, user or need."], [73, "Understand the customer", "Identify a target customer and gather simple research about what they might want or value."], [74, "Cost and price an idea", "Calculate simple costs, selling price, potential income or profit for a product or service."], [75, "Create a brand", "Develop a suitable name, logo, visual identity or brand message for an enterprise idea."], [76, "Make or prepare something for a customer", "Produce a product, prototype, sample or service outcome to an agreed standard."], [77, "Promote and pitch an idea", "Create promotional content and explain or pitch an enterprise idea to others."], [78, "Experience a real work-related task", "Take part in a realistic work, enterprise, client or community project with responsibilities and deadlines."], [79, "Create a CV or portfolio", "Produce a simple CV, skills profile or portfolio that presents strengths and evidence of achievement."], [80, "Explore a future career or employer", "Research a job, sector, training route or employer and identify realistic next steps."], [81, "Listen actively", "Demonstrate attentive listening and respond appropriately to another person."], [82, "Speak clearly for a purpose", "Communicate information, an opinion or an idea clearly in a suitable way for the audience."], [83, "Use non-verbal communication positively", "Recognise how tone, body language, personal space and facial expression affect communication."], [84, "Work as part of a team", "Take on a role, contribute ideas and complete agreed responsibilities in a group task."], [85, "Give and receive feedback", "Offer respectful feedback and respond constructively when feedback is received."], [86, "Show respect and inclusion", "Demonstrate respectful behaviour and explore equality, difference, boundaries and inclusion."], [87, "Manage disagreement constructively", "Use an agreed approach to resolve or repair a disagreement, misunderstanding or conflict."], [88, "Lead part of a task", "Take responsibility for organising, explaining or supporting part of a group activity."], [89, "Present to an audience", "Plan and deliver a short presentation, demonstration, pitch or showcase appropriate to the audience."], [90, "Build positive relationships", "Reflect on what helps create safe, respectful and effective relationships with peers and adults."], [91, "Manage my time", "Use a timetable, deadline, timer or plan to complete tasks and arrive prepared."], [92, "Organise myself and my equipment", "Prepare the resources needed for a task and keep personal/work materials organised."], [93, "Make an informed decision", "Compare options, consider consequences and explain a reasoned choice."], [94, "Plan a journey or practical life task", "Plan a realistic journey, appointment, purchase or everyday task using times, costs and information."], [95, "Manage money for a purpose", "Create and use a simple budget, compare value or plan spending for a realistic scenario."], [96, "Explore education, training or work options", "Research realistic next-step pathways and identify entry requirements or support needed."], [97, "Complete an application-style task", "Complete a suitable form, email, enquiry, personal statement or application practice accurately."], [98, "Practise interview or professional communication", "Prepare for and take part in a mock interview, employer conversation or professional meeting."], [99, "Create my next-step action plan", "Set out specific actions, people, deadlines and support needed for the next stage."], [100, "Review my Hustle 100 journey", "Review achievements across the programme, identify evidence of growth and communicate the next positive step."]];
+
+function initHive(root, api){
+const $=id=>root.querySelector("#"+id);
+const I={
+ mind:'<path d="M3 20l6-10 4 6 2-3 6 7z"/><path d="M9 10V4l5 2-5 2"/>',
+ comm:'<circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.4"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6"/><path d="M15 14.5c3 0 6 1.8 6 5.5"/>',
+ heart:'<path d="M12 20s-7.5-4.6-7.5-10.2A4.2 4.2 0 0 1 12 7.4a4.2 4.2 0 0 1 7.5 2.4C19.5 15.4 12 20 12 20z"/>',
+ tool:'<path d="M15 4.5a4.5 4.5 0 0 0 4.5 6L11 19a2.1 2.1 0 0 1-3-3l8.5-8.5a4.5 4.5 0 0 0-1.5-3z"/>',
+ digi:'<rect x="4" y="5" width="16" height="11" rx="2"/><path d="M2 19h20"/>',
+ idea:'<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.5.4.5 1 .5 1.6V16h6v-.5c0-.6 0-1.2.5-1.6A6 6 0 0 0 12 3z"/>',
+ leaf:'<path d="M5 19C5 10.5 11 5 19.5 4.5 19 13 13.5 19 5 19z"/><path d="M5 19l7.5-7.5"/>',
+ case:'<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/>',
+ chat:'<path d="M4 5h16v10H9l-5 4z"/>',
+ sign:'<path d="M12 3v18"/><path d="M5 6h11l3 2.5-3 2.5H5zM19 13H8l-3 2.5L8 18h11z"/>'};
+const AREAS=[
+ ["Mindset & Resilience","#2D8FD4","mind"],["Community & Citizenship","#22A35A","comm"],["Health & Wellbeing","#D9A520","heart"],
+ ["Practical & Making Skills","#EE8636","tool"],["Digital & AI Skills","#E2504F","digi"],["Creativity & Innovation","#9450D8","idea"],
+ ["Outdoor & Environment","#7C8F1E","leaf"],["Enterprise & Employability","#14979D","case"],["Communication & Relationships","#5866DA","chat"],["Independence & Next Steps","#CC3AA6","sign"]];
+const AWARDS=[["First Steps",10,"#8FB8DE"],["Bronze",25,"#C98A4B"],["Silver",50,"#A9B1BA"],["Gold",75,"#E8B730"],["Hustle 100 Graduate",100,"#FE6505"]];
+let view="hive", q="", fArea=-1, kiosk=false, staleDays=14, lastUndo=null;
+let usr=null, myId=null, names={};
+const signer=(l,n)=>(l.signedBy||{})[n]||null;
+function who(id){if(!id)return "";const nm=names[id];return (nm||"a staff member")+(id===myId?" (you)":"")}
+async function resolveNames(){
+  if(!usr)return;const ids=new Set();learners.forEach(l=>Object.values(l.signedBy||{}).forEach(id=>{if(id&&!(id in names))ids.add(id)}));
+  if(!ids.size)return;let ps={};try{ps=await usr.profiles([...ids])}catch(e){}
+  ids.forEach(id=>names[id]=(ps[id]&&ps[id].name)||"");render();
+}
+let db=null, learners=[], selected=null, openNum=null, live=false, dl=null, lastPts={};
+
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const pts=l=>Object.keys(l.achieved||{}).length;
+const awardOf=p=>{let a=null;for(const w of AWARDS) if(p>=w[1]) a=w;return a};
+const nextOf=p=>AWARDS.find(w=>p<w[1]);
+const today=()=>new Date().toISOString().slice(0,10);
+const icon=(k,sw=2)=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${I[k]}</svg>`;
+const fmt=d=>new Date(d).toLocaleDateString("en-GB",{day:"numeric",month:"short"});
+function toast(m,act){const t=$("toast");t.innerHTML="";const sp=document.createElement("span");sp.textContent=m;t.appendChild(sp);
+  if(act){const b=document.createElement("button");b.textContent=act.label;b.onclick=()=>{t.classList.remove("show","act");act.fn()};t.appendChild(b);t.classList.add("act")}else t.classList.remove("act");
+  t.classList.add("show");clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("show","act"),act?7000:2800)}
+function hexPts(cx,cy,r){let p=[];for(let i=0;i<6;i++){const a=Math.PI/180*(60*i-90);p.push((cx+r*Math.cos(a)).toFixed(1)+","+(cy+r*Math.sin(a)).toFixed(1))}return p.join(" ")}
+const R=19, W=Math.sqrt(3)*R;
+const POS=(()=>{const rows=[3,4,3],out=[];rows.forEach((n,ri)=>{const off=(4-n)*W/2;for(let i=0;i<n;i++)out.push([off+W/2+i*W+2,R+2+ri*1.5*R])});return out})();
+const VBW=4*W+4, VBH=5*R+4;
+
+function avatar(p,code){const f=Math.min(1,p/100),id="a"+Math.random().toString(36).slice(2,8);
+ return `<svg width="34" height="38" viewBox="0 0 22 25" aria-hidden="true"><defs><clipPath id="${id}"><polygon points="${hexPts(11,12.5,10.5)}"/></clipPath></defs><polygon points="${hexPts(11,12.5,10.5)}" fill="var(--empty)"/><rect x="0" y="${(2+21*(1-f)).toFixed(1)}" width="22" height="25" fill="var(--honey)" clip-path="url(#${id})"/><polygon points="${hexPts(11,12.5,10.5)}" fill="none" stroke="var(--orange)" stroke-width="1.2"/></svg>`}
+
+function meter(p){
+  const f=Math.min(1,p/100), H=212, top=8, bottom=204, y=top+(bottom-top)*(1-f);
+  const wave=`M0 10 Q 15 0 30 10 T 60 10 T 90 10 T 120 10 T 150 10 T 180 10 T 210 10 T 240 10 T 270 10 T 300 10 T 330 10 T 360 10 V 260 H 0 Z`;
+  return `<svg viewBox="0 0 190 212" aria-hidden="true"><defs><clipPath id="mclip"><polygon points="${hexPts(95,106,100)}"/></clipPath></defs>
+  <polygon points="${hexPts(95,106,100)}" fill="var(--empty)"/>
+  <g clip-path="url(#mclip)"><g class="level" style="transform:translateY(${(y-10).toFixed(1)}px)"><path class="wave2" d="${wave}" fill="var(--orange)"/><path class="wave" d="${wave}" fill="var(--honey)" transform="translate(0,4)"/></g></g>
+  <polygon points="${hexPts(95,106,100)}" fill="none" stroke="var(--orange)" stroke-width="5" stroke-linejoin="round"/></svg>
+  <div class="num"><b>${p}</b><span>of 100</span></div>`}
+
+function badgeSvg(color,done,big){const s=big?"":"";return `<svg viewBox="0 0 22 25" aria-hidden="true"><polygon points="${hexPts(11,12.5,11)}" fill="${done?color:"var(--empty)"}"/><polygon points="${hexPts(11,12.5,7.5)}" fill="none" stroke="${done?"rgba(255,255,255,.7)":"var(--line)"}" stroke-width="1"/><path d="M11 8.2l1.3 2.7 2.9.4-2.1 2 .5 2.9L11 14.8l-2.6 1.4.5-2.9-2.1-2 2.9-.4z" fill="${done?"#fff":"var(--line)"}"/></svg>`}
+
+function cheerFor(p){
+  const nx=nextOf(p);
+  if(!nx) return `Every single cell filled. <b>Hustle 100 Graduate!</b>`;
+  const n=nx[1]-p;
+  if(p===0) return `A fresh hive, ready to go. <b>10 challenges</b> unlocks First Steps.`;
+  if(n<=3) return `So close! Just <b>${n} more</b> to ${nx[0]}.`;
+  return `<b>${n} more</b> to reach ${nx[0]}.${kiosk?" Tap any cell to see what it involves.":" Tap a cell when a challenge is done."}`;
+}
+
+function renderList(){
+  const L=$("list");
+  if(!learners.length){L.innerHTML=`<li class="note" style="margin:0 4px">No learners yet.</li>`}
+  else L.innerHTML=learners.map(l=>{const p=pts(l),a=awardOf(p);return `<li><button class="lbtn" data-id="${esc(l.id)}" aria-current="${view!=="overview"&&l.id===selected}">${avatar(p)}<span><span class="nm">${esc(l.name)}</span><span class="aw">${a?a[0]:"Getting started"}</span></span><span class="pts">${p}</span></button></li>`}).join("");
+  L.querySelectorAll(".lbtn").forEach(b=>b.onclick=()=>{selected=b.dataset.id;if(view==="overview")view="hive";closeSheet();render()});
+  $("obtn").setAttribute("aria-current",String(view==="overview"));
+  const total=learners.reduce((s,l)=>s+pts(l),0);
+  $("together").innerHTML=`<svg width="30" height="34" viewBox="0 0 22 25" aria-hidden="true"><polygon points="${hexPts(11,12.5,11)}" fill="#FE6505"/></svg><div><b>${total}</b><span>cells filled across our hive</span></div>`;
+}
+
+function tabs(){return `<div class="tabs" role="tablist"><button role="tab" data-v="hive" aria-selected="${view==="hive"}">Hive</button><button role="tab" data-v="list" aria-selected="${view==="list"}">All 100 challenges</button></div>`}
+function bindTabs(M){M.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{view=b.dataset.v;closeSheet();render();M.scrollIntoView({block:"start"})})}
+function renderChallenges(M,l){
+  const qq=q.trim().toLowerCase();
+  const areas=AREAS.map(([name,col,ic],a)=>{
+    if(fArea>=0&&fArea!==a)return "";
+    const items=CH.slice(a*10,a*10+10).filter(([n,t,o])=>!qq||(n+" "+t+" "+o).toLowerCase().includes(qq));
+    if(!items.length)return "";
+    const got=l?CH.slice(a*10,a*10+10).filter(([n])=>(l.achieved||{})[n]).length:null;
+    return `<section class="agroup" style="--c:${col}"><header><span class="ico">${icon(ic)}</span><h3>${name}</h3><span class="cnt">${l?got+" of 10 done":"Challenges "+(a*10+1)+"–"+(a*10+10)}</span></header><ul class="clist">${items.map(([n,t,o])=>{const on=l&&(l.achieved||{})[n];return `<li><button class="citem ${on?"on":""}" data-n="${n}"><span class="cnum"><svg viewBox="0 0 22 25" aria-hidden="true"><polygon points="${hexPts(11,12.5,10.5)}" fill="${on?col:"none"}" stroke="${col}" stroke-width="1.2"/></svg><b>${n}</b></span><span><h4>${esc(t)}${!on&&l&&(l.focus||[]).includes(n)?`<span class="ftag">${kiosk?"Next":"Focus"}</span>`:""}</h4><p>${esc(o)}</p></span>${on?`<span class="tick">Done ${fmt(on)}</span>`:""}</button></li>`}).join("")}</ul></section>`}).join("");
+  const chips=`<button class="fchip" data-a="-1" aria-pressed="${fArea<0}">All areas</button>`+AREAS.map(([n,c,ic],a)=>`<button class="fchip" style="--c:${c}" data-a="${a}" aria-pressed="${fArea===a}">${icon(ic)}${n}</button>`).join("");
+  M.innerHTML=`${tabs()}<section class="lhead"><h2>The 100 challenges</h2><p>Ten areas, ten challenges each. You don't need to do them all or go in order: pick the ones that matter to you.${l?` ${kiosk?"Filled hexagons show the ones you have done.":"Ticks show what "+esc(l.name)+" has done."}`:""}</p><input class="search" id="q" type="search" placeholder="Search, e.g. budget, 3D, interview" value="${esc(q)}" aria-label="Search challenges"><div class="filters">${chips}</div></section><div id="areas">${areas||`<p class="none">No challenges match that search.</p>`}</div>`;
+  bindTabs(M);
+  const box=$("q");box.oninput=()=>{q=box.value;const pos=box.selectionStart;renderChallenges(M,l);const b=$("q");b.focus();b.setSelectionRange(pos,pos)};
+  M.querySelectorAll(".fchip").forEach(b=>b.onclick=()=>{fArea=+b.dataset.a;renderChallenges(M,l)});
+  M.querySelectorAll(".citem").forEach(b=>b.onclick=()=>{if(l&&!kiosk)openSheet(+b.dataset.n);else openInfo(+b.dataset.n,l)});
+}
+const daysSince=d=>Math.floor((Date.now()-new Date(String(d).slice(0,10)+"T12:00:00").getTime())/864e5);
+const lastDate=l=>{const v=Object.values(l.achieved||{}).sort();return v.length?v[v.length-1]:null};
+function renderOverview(M){
+  if(!learners.length){M.innerHTML=`<div class="ohead"><div><h2>Group overview</h2><p>Add learners to see how the group is doing.</p></div></div>`;return}
+  const n=learners.length,total=learners.reduce((a,l)=>a+pts(l),0);
+  const all=[];learners.forEach(l=>Object.entries(l.achieved||{}).forEach(([c,d])=>all.push({l,c:+c,d})));
+  all.sort((a,b)=>b.d.localeCompare(a.d)||b.c-a.c);
+  const week=all.filter(x=>daysSince(x.d)<7).length;
+  const stale=learners.map(l=>{const ld=lastDate(l);const ds=ld?daysSince(ld):daysSince(l.created||today());return {l,ld,ds}}).filter(x=>x.ds>=staleDays).sort((a,b)=>b.ds-a.ds);
+  const close=learners.map(l=>{const p=pts(l),nx=nextOf(p);return {l,p,nx,gap:nx?nx[1]-p:99}}).filter(x=>x.nx&&x.gap<=3).sort((a,b)=>a.gap-b.gap);
+  const areaTot=AREAS.map((a,i)=>all.filter(x=>Math.floor((x.c-1)/10)===i).length);
+  const maxA=Math.max(1,...areaTot), minA=Math.min(...areaTot);
+  const levels=[["Getting started",0]].concat(AWARDS.map(a=>[a[0],a[1]]));
+  const dist=levels.map(([nm,t],i)=>{const hi=i<levels.length-1?levels[i+1][1]:Infinity;return [nm==="Hustle 100 Graduate"?"Graduate":nm,learners.filter(l=>{const p=pts(l);return p>=t&&p<hi}).length]});
+  const row=(l,meta,pill,cls)=>`<button class="prow" data-id="${esc(l.id)}">${avatar(pts(l))}<span><span class="nm">${esc(l.name)}</span><span class="meta">${meta}</span></span><span class="pill ${cls}">${pill}</span></button>`;
+  const gname=nm=>nm==="Hustle 100 Graduate"?"Graduate":nm;
+  M.innerHTML=`<div class="ohead"><div><h2>Group overview</h2><p>How the whole group is getting on. Tap a learner to open their hive.</p></div></div>
+  <div class="stats"><div class="stat"><b>${n}</b><span>learners</span></div><div class="stat"><b>${total}</b><span>challenges achieved</span></div><div class="stat"><b>${week}</b><span>sign-offs in the last 7 days</span></div><div class="stat"><b>${(total/n).toFixed(1)}</b><span>average points per learner</span></div></div>
+  <div class="ogrid">
+   <section class="panel"><div class="phead"><div><h3>Needs attention</h3><p class="sub">No sign-off for a while. Worth a check-in.</p></div><select id="stale" aria-label="Days without a sign-off">${[7,14,21,28].map(d=>`<option value="${d}" ${d===staleDays?"selected":""}>${d}+ days</option>`).join("")}</select></div>
+    ${stale.length?stale.map(x=>row(x.l,x.ld?`Last sign-off ${fmt(x.ld)}`:"No sign-offs yet",`${x.ds} days`,"warn")).join(""):`<p class="okmsg">Everyone has had a sign-off in the last ${staleDays} days.</p>`}</section>
+   <section class="panel"><h3>Close to an award</h3><p class="sub">Within 3 points of their next award. Time to plan a celebration.</p>
+    ${close.length?close.map(x=>row(x.l,`${x.p} points`,`${x.gap} to ${gname(x.nx[0])}`,"go")).join(""):`<p class="okmsg">Nobody is within 3 points of an award right now.</p>`}</section>
+   <section class="panel wide"><h3>Areas across the group</h3><p class="sub">Challenges achieved in each area. Under-used areas may need more planned activities.</p>
+    <div class="bars">${AREAS.map(([nm,c,ic],i)=>`<div class="brow" style="--c:${c}"><span class="lab">${icon(ic)}<span>${nm}</span></span><span class="track2"><i style="width:${areaTot[i]/maxA*100}%"></i></span><b>${areaTot[i]}${all.length&&areaTot[i]===minA?` <span class="flag">Least used</span>`:""}</b></div>`).join("")}</div></section>
+   <section class="panel"><h3>Award levels</h3><p class="sub">Where each learner is on the ladder.</p><div class="dist">${dist.map(([nm,c])=>`<div><b>${c}</b><span>${nm}</span></div>`).join("")}</div></section>
+   <section class="panel feed"><h3>Recent sign-offs</h3><p class="sub">The latest challenges achieved across the group.</p>
+    ${all.length?all.slice(0,8).map(x=>{const ar=AREAS[Math.floor((x.c-1)/10)];return `<button class="prow" data-id="${esc(x.l.id)}"><i style="background:${ar[1]}">${x.c}</i><span><span class="nm">${esc(CH[x.c-1][1])}</span><span class="meta">${esc(x.l.name)}${signer(x.l,x.c)?`, signed off by ${esc(who(signer(x.l,x.c)))}`:""}</span></span><span class="pill">${fmt(x.d)}</span></button>`}).join(""):`<p class="okmsg">No sign-offs yet.</p>`}</section>
+  </div>`;
+  $("stale").onchange=e=>{staleDays=+e.target.value;renderOverview(M)};
+  M.querySelectorAll(".prow").forEach(b=>b.onclick=()=>{selected=b.dataset.id;view="hive";render();scrollTo(0,0)});
+}
+function render(){
+  renderList();
+  const M=$("main"), l=learners.find(x=>x.id===selected);
+  if(view==="overview"&&!kiosk){renderOverview(M);return}
+  if(view==="list"){renderChallenges(M,l);if(openNum)fillSheet();return}
+  if(!l){M.innerHTML=tabs()+`<div class="empty"><svg class="bob" width="96" height="108" viewBox="0 0 22 25" aria-hidden="true"><polygon points="${hexPts(11,12.5,10.5)}" fill="var(--honey)" stroke="var(--orange)" stroke-width="1"/><polygon points="${hexPts(11,12.5,5)}" fill="var(--orange)"/></svg><h2>${learners.length?"Pick a learner":"Start your hive"}</h2><p>${learners.length?"Choose a learner from the list to see their hive grow.":"Add a learner code on the left, such as HH-014. Every learner gets 100 cells to fill, one challenge at a time."}</p></div>`;return}
+  const p=pts(l), aw=awardOf(p);
+  const recent=Object.entries(l.achieved||{}).sort((a,b)=>b[1].localeCompare(a[1])||b[0]-a[0]).slice(0,3);
+  const focus=(l.focus||[]).filter(n=>!(l.achieved||{})[n]);
+  const nexts=focus.length?`<div class="nextbox"><span class="nlab">${kiosk?"My next challenges":"Up next"}</span><div class="wins">${focus.map(n=>{const ar=AREAS[Math.floor((n-1)/10)];return `<button class="win focus" data-n="${n}"><i style="background:${ar[1]}">${n}</i><span>${esc(CH[n-1][1])}</span></button>`}).join("")}</div></div>`:"";
+  const wins=recent.length?`<div class="nextbox"><span class="nlab">${kiosk?"My recent wins":"Recent wins"}</span><div class="wins">${recent.map(([n,d])=>{const ar=AREAS[Math.floor((n-1)/10)];return `<button class="win" data-n="${n}"><i style="background:${ar[1]}">${n}</i><span>${esc(CH[n-1][1])} <small>${fmt(d)}</small></span></button>`}).join("")}</div></div>`:"";
+  let trackPct=0;{const idx=AWARDS.findIndex(w=>p<w[1]);if(idx===-1)trackPct=100;else if(idx===0)trackPct=0;else{const a=AWARDS[idx-1][1],b=AWARDS[idx][1];trackPct=((idx-1)+(p-a)/(b-a))/(AWARDS.length-1)*100}}
+  const nowIdx=AWARDS.findIndex(w=>p<w[1]);
+  const ladder=`<div class="ladder"><div class="track"><i style="width:${trackPct}%"></i></div>${AWARDS.map(([n,t,c],i)=>`<div class="badge ${p>=t?"done":""} ${i===nowIdx?"now":""}">${badgeSvg(c,p>=t)}<b>${n==="Hustle 100 Graduate"?"Graduate":n}</b><span>${t} points</span></div>`).join("")}</div>`;
+  const cards=AREAS.map(([name,col,ic],a)=>{
+    let got=0;
+    const cells=POS.map(([x,y],i)=>{const n=a*10+i+1;const on=!!(l.achieved||{})[n];if(on)got++;
+      const fx=!on&&(l.focus||[]).includes(n);
+      return `<g class="hx ${fx?"fx":""}" tabindex="0" role="button" data-n="${n}" aria-label="Challenge ${n}: ${esc(CH[n-1][1])}${on?", achieved":fx?", focus challenge":""}"><polygon points="${hexPts(x,y,R-1.8)}" fill="${on?col:fx?"var(--panel)":"var(--empty)"}" stroke="${col}" stroke-width="${on?0:fx?2.6:1.3}" stroke-opacity="${fx?1:.5}"/><text x="${x}" y="${y+4.4}" text-anchor="middle" fill="${on?"#fff":col}">${n}</text></g>`}).join("");
+    return `<section class="card ${got===10?"full":""}" style="--c:${col}"><header><span class="ico">${icon(ic)}</span><div><h4>${name}</h4><span class="ct">${got===10?"All 10 complete":got+" of 10"}</span></div></header><svg class="cells" viewBox="0 0 ${VBW.toFixed(0)} ${VBH.toFixed(0)}">${cells}</svg><div class="bar"><i style="width:${got*10}%"></i></div></section>`}).join("");
+  M.innerHTML=tabs()+`<section class="hero"><div><h2>${esc(l.name)}</h2><span class="chip ${aw?"won":""}">${aw?badgeSvg("#1A1A1A",true).replace('<svg ','<svg width="18" height="20" '):""}${aw?aw[0]:"Getting started"}</span><p class="cheer">${cheerFor(p)}</p>${nexts}${wins}</div><div class="meter" role="img" aria-label="${p} of 100 points">${meter(p)}</div></section>
+  ${ladder}
+  <div class="sect"><h3>${kiosk?"My hive":"The hive"}</h3><p class="legend"><svg viewBox="0 0 22 25" aria-hidden="true"><polygon points="${hexPts(11,12.5,9.5)}" fill="none" stroke="var(--orange)" stroke-width="2" stroke-dasharray="4 2.5"/></svg>${kiosk?"Dashed cells are your next challenges":"Dashed cells are focus challenges. Tap any cell to open it."}</p></div>
+  <div class="hive">${cards}</div>
+  <div class="tools"><button class="btn show" id="kiosk">Show to learner</button><button class="btn" id="csv">Download for staff tracker</button><button class="btn quiet" id="rename">Rename</button><button class="btn quiet" id="remove">Remove learner</button></div>`;
+  const op=n=>kiosk?openInfo(n,l):openSheet(n);
+  M.querySelectorAll(".hx").forEach(g=>{g.onclick=()=>op(+g.dataset.n);g.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();op(+g.dataset.n)}}});
+  bindTabs(M);
+  M.querySelectorAll(".win").forEach(b=>b.onclick=()=>op(+b.dataset.n));
+  $("csv").onclick=()=>downloadCsv(l); $("csv").style.display=dl?"":"none";
+  $("rename").onclick=()=>renameLearner(l); $("kiosk").onclick=()=>enterKiosk(); $("remove").onclick=()=>removeLearner(l);
+  // animate honey rising from previous level
+  const lv=M.querySelector(".level"), prevP=lastPts[l.id];
+  if(lv&&prevP!==undefined&&prevP!==p){const target=lv.style.transform;const f0=Math.min(1,prevP/100);lv.style.transition="none";lv.style.transform=`translateY(${(8+196*(1-f0)-10).toFixed(1)}px)`;lv.getBoundingClientRect();lv.style.transition="";lv.style.transform=target}
+  lastPts[l.id]=p;
+  if(openNum) fillSheet();
+}
+function openSheet(n){openNum=n;fillSheet();$("sheet").classList.add("open");$("sheet").setAttribute("aria-hidden","false");$("scrim").classList.add("open");setTimeout(()=>$("sheet").querySelector(".primary")?.focus(),60)}
+function openInfo(n,l){openNum=null;const when=l&&(l.achieved||{})[n];const c=CH[n-1],[an,col,ic]=AREAS[Math.floor((n-1)/10)],S=$("sheet");S.style.setProperty("--c",col);
+  S.innerHTML=`<div class="band"><button class="close" id="x" aria-label="Close">×</button><div class="area">${icon(ic)}${an}</div><div class="num">Challenge ${n}</div><h3>${esc(c[1])}</h3></div><div class="body"><p class="outcome">${esc(c[2])}</p>${when?`<p class="done-line">${badgeSvg("var(--orange)",true).replace('<svg ','<svg width="20" height="22" ')}<span>Achieved on ${new Date(when).toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})}${signer(l,n)?`<br><span style="font-weight:500">Signed off by ${esc(who(signer(l,n)))}</span>`:""}</span></p>`:(kiosk?`<p class="note" style="margin:0">Think you've done this one? Talk to a member of staff.</p>`:`<p class="note" style="margin:0">Pick a learner to mark this challenge achieved.</p>`)}</div>`;
+  $("x").onclick=closeSheet;S.classList.add("open");S.setAttribute("aria-hidden","false");$("scrim").classList.add("open")}
+function closeSheet(){openNum=null;$("sheet").classList.remove("open");$("sheet").setAttribute("aria-hidden","true");$("scrim").classList.remove("open")}
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeSheet();hideCel()}});
+function fillSheet(){
+  const l=learners.find(x=>x.id===selected);if(!l||!openNum||kiosk)return;
+  const n=openNum,c=CH[n-1],[an,col,ic]=AREAS[Math.floor((n-1)/10)],when=(l.achieved||{})[n],note=(l.notes||{})[n]||"";
+  const S=$("sheet");S.style.setProperty("--c",col);
+  S.innerHTML=`<div class="band"><button class="close" id="x" aria-label="Close">×</button><div class="area">${icon(ic)}${an}</div><div class="num">Challenge ${n}</div><h3>${esc(c[1])}</h3></div>
+   <div class="body"><p class="outcome">${esc(c[2])}</p>
+   ${when?`<p class="done-line">${badgeSvg("var(--orange)",true).replace('<svg ','<svg width="20" height="22" ')}<span>Achieved on ${new Date(when).toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})}${signer(l,n)?`<br><span style="font-weight:500">Signed off by ${esc(who(signer(l,n)))}</span>`:""}</span></p>`:""}
+   <label for="ev">Where is the evidence? <span style="font-weight:400;color:var(--hmuted)">(optional)</span></label>
+   <textarea id="ev" placeholder="e.g. Drive &gt; HH-014 &gt; Challenge 34">${esc(note)}</textarea>
+   <p class="note" style="margin:-8px 0 0">Note the location only. Don't add photos, full names or personal details here.</p>
+   <div class="row">${when?`<button class="btn" id="undo">Mark not achieved</button><button class="btn primary" id="save">Save note</button>`:`<button class="btn primary" id="mark">Mark achieved</button><button class="btn" id="focus">${(l.focus||[]).includes(n)?"Remove from focus":"Add to focus"}</button>`}</div></div>`;
+  $("x").onclick=closeSheet;
+  if(when){$("undo").onclick=()=>setAchieved(l,n,false);$("save").onclick=()=>saveNote(l,n)} else {$("mark").onclick=()=>setAchieved(l,n,true);$("focus").onclick=()=>toggleFocus(l,n)}
+}
+async function write(id,data){
+  if(!live){const l=learners.find(x=>x.id===id);Object.assign(l,data);render();return true}
+  try{await db.collection("learners").doc(id).update(data);return true}
+  catch(e){toast("Couldn't save: "+((e&&e.message)||"permission or connection problem"));return false}
+}
+const CHEERS=["Nice one!","Brilliant!","Another cell filled!","Hive's growing!","Smashed it!","Great work!"];
+async function setAchieved(l,n,on){
+  const before=pts(l), prev={achieved:{...(l.achieved||{})},notes:{...(l.notes||{})},focus:[...(l.focus||[])],signedBy:{...(l.signedBy||{})}};
+  const sb={...prev.signedBy};
+  const a={...prev.achieved}, notes={...prev.notes}, ev=$("ev").value.trim();
+  let focus=prev.focus;
+  const sn={...(l.signerNames||{})};
+  if(on){a[n]=today();if(ev)notes[n]=ev;focus=focus.filter(x=>x!==n);if(myId){sb[n]=myId;sn[myId]=names[myId]||""}else delete sb[n]}
+  else{delete a[n];delete notes[n];delete sb[n]}
+  closeSheet();
+  if(!await write(l.id,{achieved:a,notes,focus,signedBy:sb,signerNames:sn}))return;
+  const undo={label:"Undo",fn:async()=>{hideCel();if(await write(l.id,prev))toast(on?`Challenge ${n} unmarked.`:`Challenge ${n} restored.`)}};
+  if(on){
+    requestAnimationFrame(()=>{const g=document.querySelector(`.hx[data-n="${n}"]`);if(g)g.classList.add("pop")});
+    const after=Object.keys(a).length, aw=awardOf(after), bw=awardOf(before);
+    const ar=Math.floor((n-1)/10), areaDone=Object.keys(a).filter(k=>Math.floor((k-1)/10)===ar).length===10;
+    lastUndo=undo;
+    if(aw&&(!bw||bw[0]!==aw[0])) celebrate(l.name,aw[0],aw[2],`${l.name} has reached ${aw[0]}.`);
+    else if(areaDone) celebrate(l.name,AREAS[ar][0],AREAS[ar][1],`${l.name} has completed every challenge in this area.`);
+    else toast(`${CHEERS[after%CHEERS.length]} Challenge ${n} done, ${after} point${after===1?"":"s"}.`,undo);
+  } else toast(`Challenge ${n} unmarked.`,undo);
+}
+async function toggleFocus(l,n){const f=[...(l.focus||[])];const i=f.indexOf(n);if(i>=0)f.splice(i,1);else f.push(n);
+  if(await write(l.id,{focus:f})){closeSheet();toast(i>=0?`Challenge ${n} removed from focus.`:`Challenge ${n} added to focus.`)}}
+async function saveNote(l,n){const notes={...(l.notes||{})};const v=$("ev").value.trim();if(v)notes[n]=v;else delete notes[n];if(await write(l.id,{notes})){toast("Note saved.");closeSheet()}}
+function celebrate(name,title,color,line){
+  $("celCard").innerHTML=`${badgeSvg(color,true).replace('<svg ','<svg width="110" height="124" ')}<h2>${esc(title)}!</h2><p>${esc(line)}</p><button class="btn primary" id="celOk">Brilliant</button>${lastUndo?`<br><button class="btn quiet" id="celUndo" style="margin-top:8px">Marked by mistake? Undo</button>`:""}`;
+  $("cel").classList.add("show");$("celOk").onclick=hideCel;if(lastUndo){const u=lastUndo;$("celUndo").onclick=()=>u.fn()}setTimeout(()=>$("celOk").focus(),60);
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  const cols=AREAS.map(a=>a[1]).concat(["#FE6505","#FF9A3C"]);
+  for(let i=0;i<48;i++){const b=document.createElementNS("http://www.w3.org/2000/svg","svg");b.setAttribute("viewBox","0 0 22 25");b.classList.add("bit");b.innerHTML=`<polygon points="${hexPts(11,12.5,11)}" fill="${cols[i%cols.length]}"/>`;
+    const x0=innerWidth/2,y0=innerHeight/2,ang=Math.random()*Math.PI*2,d=180+Math.random()*320,sz=.6+Math.random()*.9;b.style.left=x0+"px";b.style.top=y0+"px";document.body.appendChild(b);
+    b.animate([{transform:`translate(-50%,-50%) scale(${sz*.3})`,opacity:1},{transform:`translate(${Math.cos(ang)*d}px,${Math.sin(ang)*d+160}px) rotate(${Math.random()*540}deg) scale(${sz})`,opacity:0}],{duration:1300+Math.random()*700,easing:"cubic-bezier(.15,.7,.4,1)"}).onfinish=()=>b.remove()}
+}
+function enterKiosk(){if(!selected)return;kiosk=true;view="hive";closeSheet();document.body.classList.add("kiosk");try{document.documentElement.requestFullscreen?.().catch(()=>{})}catch(e){}render();scrollTo(0,0)}
+function exitKiosk(){kiosk=false;document.body.classList.remove("kiosk");closeSheet();try{if(document.fullscreenElement)document.exitFullscreen().catch(()=>{})}catch(e){}render()}
+(()=>{const b=$("lv");let t=null;const start=e=>{e.preventDefault();b.classList.add("hold");t=setTimeout(()=>{b.classList.remove("hold");exitKiosk()},1400)};const stop=()=>{clearTimeout(t);b.classList.remove("hold")};
+ b.addEventListener("pointerdown",start);["pointerup","pointerleave","pointercancel"].forEach(ev=>b.addEventListener(ev,stop));
+ b.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&!e.repeat)start(e)});b.addEventListener("keyup",stop);b.addEventListener("click",e=>e.preventDefault())})();
+function hideCel(){$("cel").classList.remove("show")}
+async function addLearner(){
+  const v=($("newName").value.trim())||nextCode();
+  if(/[A-Za-z]{2,}\s+[A-Za-z]{2,}/.test(v)&&!confirm(`"${v}" looks like a full name. This page is shared, so use a learner code such as HH-014 instead. Add it anyway?`))return;
+  const rec={name:v,achieved:{},notes:{},focus:[],created:new Date().toISOString()};
+  if(!live){const id="local"+Date.now();learners.push({id,...rec});selected=id;$("newName").value="";render();return}
+  try{const ref=await db.collection("learners").add(rec);selected=ref.id;$("newName").value="";toast(`${v} added. Let's fill that hive!`)}
+  catch(e){toast("Couldn't add learner: "+((e&&e.message)||"permission or connection problem"))}
+}
+const nextCode=()=>{let m=0;learners.forEach(l=>{const x=/^HH-(\d+)$/i.exec(String(l.name).trim());if(x)m=Math.max(m,+x[1])});return "HH-"+String(m+1).padStart(3,"0")};
+root.addEventListener("focusin",e=>{if(e.target.id==="newName"&&!e.target.value){e.target.value=nextCode();e.target.select()}});
+root.addEventListener("submit",e=>{if(e.target.id==="addForm"){e.preventDefault();addLearner()}});
+root.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest("#obtn,#scrim");if(!t)return;if(t.id==="obtn"){view="overview";closeSheet();render();scrollTo(0,0)}else closeSheet()});
+window.addEventListener("error",e=>toast("Something went wrong: "+(e.message||"unknown error")));
+window.addEventListener("unhandledrejection",e=>toast("Something went wrong: "+((e.reason&&e.reason.message)||"unknown error")));
+async function renameLearner(l){const v=prompt("New learner code",l.name);if(v&&v.trim())await write(l.id,{name:v.trim()})}
+async function removeLearner(l){
+  if(!confirm(`Remove ${l.name} and their hive? This can't be undone.`))return;
+  if(!live){learners=learners.filter(x=>x.id!==l.id);selected=null;render();return}
+  try{await db.collection("learners").doc(l.id).delete();selected=null;toast(`${l.name} removed.`)}catch(e){toast("Couldn't remove learner.")}
+}
+async function downloadCsv(l){
+  await resolveNames();
+  const rows=[["Challenge","Area","Title","Status","Date achieved","Signed off by","Evidence location"]];
+  CH.forEach(([n,t])=>{const d=(l.achieved||{})[n];const sid=d?signer(l,n):null;rows.push([n,AREAS[Math.floor((n-1)/10)][0],t,d?"Achieved":"",d||"",sid?(names[sid]||"Unknown staff member"):(d?"Not recorded":""),(l.notes||{})[n]||""])});
+  const csv=rows.map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(",")).join("\r\n");
+  try{await dl.save({filename:`Hustle100_${l.name.replace(/[^\w-]+/g,"_")}_${today()}.csv`,data:csv})}catch(e){if(e&&e.code!=="cancelled"&&e.code!=="declined")toast("Download didn't complete.")}
+}
+render();
+(async()=>{
+  dl=api.downloads;
+  usr=api.user;try{const me=await usr.me();myId=me.id;if(myId)names[myId]=me.name||""}catch(e){}
+  db=api.db;
+  live=true;
+  $("status").textContent="Only signed-in staff can see this. Use learner codes, not names, and keep photos in Drive.";
+  db.collection("learners").onSnapshot(snap=>{
+    learners=snap.docs.filter(d=>d.exists).map(d=>({id:d.id,...d.data()})).sort((a,b)=>String(a.name).localeCompare(String(b.name),undefined,{numeric:true}));
+    if(selected&&!learners.find(l=>l.id===selected)){selected=null;if(kiosk)exitKiosk()}
+    if(!selected&&learners.length)selected=learners[0].id;
+    render();resolveNames();
+  },e=>{$("status").textContent="Lost connection to saved data. Reload to try again."});
+})();
+
+return ()=>{document.body.classList.remove("kiosk")};
+}
+
+
+(function(){
+  const loginEl=document.getElementById("login"), appEl=document.getElementById("hive-root"), msg=document.getElementById("loginMsg");
+  if(!window.supabase||SUPABASE_URL.startsWith("PASTE")){loginEl.hidden=false;msg.className="msg err";msg.textContent="Setup not finished: the app could not load its sign-in service.";document.getElementById("sendLink").disabled=true;return}
+  const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+  const toApp=r=>({id:r.id,name:r.name,achieved:r.achieved||{},notes:r.notes||{},focus:r.focus||[],signedBy:r.signed_by||{},signerNames:r.signer_names||{},created:r.created_at});
+  const MAP={name:"name",achieved:"achieved",notes:"notes",focus:"focus",signedBy:"signed_by",signerNames:"signer_names"};
+  const toDb=d=>{const o={};for(const k in d)if(MAP[k])o[MAP[k]]=d[k];return o};
+  const check=({data,error})=>{if(error)throw error;return data};
+  let started=false, cleanup=null;
+
+  function makeApi(session){
+    let rows=[];const listeners=[];let timer=null,channel=null;
+    const fetchAll=async()=>{rows=check(await sb.from("learners").select("*").order("created_at",{ascending:false}));
+      const snap={docs:rows.map(r=>({id:r.id,exists:true,data:()=>toApp(r)}))};listeners.forEach(([n])=>n(snap))};
+    const coll={
+      onSnapshot(next,err){listeners.push([next,err]);fetchAll().catch(e=>err&&err(e));
+        channel=sb.channel("learners-live").on("postgres_changes",{event:"*",schema:"public",table:"learners"},()=>fetchAll().catch(()=>{})).subscribe();
+        timer=setInterval(()=>fetchAll().catch(()=>{}),60000);return()=>clearInterval(timer)},
+      async add(data){const r=check(await sb.from("learners").insert(toDb(data)).select().single());await fetchAll();return {id:r.id}},
+      doc(id){return {
+        async update(d){check(await sb.from("learners").update(toDb(d)).eq("id",id));await fetchAll()},
+        async delete(){check(await sb.from("learners").delete().eq("id",id));await fetchAll()}}}
+    };
+    return {
+      db:{collection:()=>coll},
+      user:{
+        async me(){const email=session.user.email;let name=email;
+          try{const s=check(await sb.from("staff").select("name").eq("email",email.toLowerCase()).maybeSingle());if(s&&s.name)name=s.name}catch(e){}
+          return {id:session.user.id,name}},
+        async profiles(ids){const out={};ids.forEach(id=>{const f=rows.find(r=>r.signer_names&&r.signer_names[id]);out[id]={id,name:f?f.signer_names[id]:""}});return out}
+      },
+      downloads:{async save({filename,data}){const b=new Blob([data],{type:"text/csv;charset=utf-8"});const u=URL.createObjectURL(b);const a=document.createElement("a");a.href=u;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000)}},
+      stop(){clearInterval(timer);if(channel)sb.removeChannel(channel)}
+    };
+  }
+
+  function show(session){
+    if(session){
+      loginEl.hidden=true;appEl.hidden=false;
+      if(!started){started=true;const api=makeApi(session);const c=initHive(appEl,api);cleanup=()=>{c&&c();api.stop()}}
+    }else{
+      if(cleanup){cleanup();cleanup=null;location.reload();return}
+      appEl.hidden=true;loginEl.hidden=false;
+    }
+  }
+  sb.auth.getSession().then(({data})=>show(data.session));
+  sb.auth.onAuthStateChange((_e,session)=>show(session));
+
+  document.getElementById("loginForm").addEventListener("submit",async e=>{
+    e.preventDefault();const email=document.getElementById("email").value.trim().toLowerCase();if(!email)return;
+    msg.className="msg";msg.textContent="Sending…";
+    const {error}=await sb.auth.signInWithOtp({email,options:{shouldCreateUser:false,emailRedirectTo:location.origin+location.pathname}});
+    if(error){msg.className="msg err";msg.textContent=/not allowed|signups|not found|invalid/i.test(error.message)?"That email isn't set up for the Hive. Ask the Hive administrator to invite you.":"Couldn't send the link: "+error.message}
+    else msg.textContent="Check your email for a sign-in link. You can close this tab.";
+  });
+  document.getElementById("signout").addEventListener("click",async()=>{await sb.auth.signOut()});
+})();
+</script>
+</body>
+</html>
