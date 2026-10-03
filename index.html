@@ -447,8 +447,12 @@ const VBW=4*W+4, VBH=5*R+4;
 function avatar(p,code){const f=Math.min(1,p/100),id="a"+Math.random().toString(36).slice(2,8);
  return `<svg width="34" height="38" viewBox="0 0 22 25" aria-hidden="true"><defs><clipPath id="${id}"><polygon points="${hexPts(11,12.5,10.5)}"/></clipPath></defs><polygon points="${hexPts(11,12.5,10.5)}" fill="var(--empty)"/><rect x="0" y="${(2+21*(1-f)).toFixed(1)}" width="22" height="25" fill="var(--honey)" clip-path="url(#${id})"/><polygon points="${hexPts(11,12.5,10.5)}" fill="none" stroke="var(--orange)" stroke-width="1.2"/></svg>`}
 
+// Honey level by area: low scores show a small visible pool instead of a sliver in the bottom tip.
+function honeyY(p){const f=Math.max(0,Math.min(1,p/100)),r=100,bottom=206;if(f<=0)return bottom+14;
+  let h;if(f<=1/6)h=(r/2)*Math.sqrt(6*f);else if(f<=5/6)h=r/2+(f-1/6)*1.5*r;else h=2*r-(r/2)*Math.sqrt(6*(1-f));
+  return bottom-h}
 function meter(p){
-  const f=Math.min(1,p/100), H=212, top=8, bottom=204, y=top+(bottom-top)*(1-f);
+  const y=honeyY(p);
   const wave=`M0 10 Q 15 0 30 10 T 60 10 T 90 10 T 120 10 T 150 10 T 180 10 T 210 10 T 240 10 T 270 10 T 300 10 T 330 10 T 360 10 V 260 H 0 Z`;
   return `<svg viewBox="0 0 190 212" aria-hidden="true"><defs><clipPath id="mclip"><polygon points="${hexPts(95,106,100)}"/></clipPath></defs>
   <polygon points="${hexPts(95,106,100)}" fill="var(--empty)"/>
@@ -559,7 +563,7 @@ function render(){
   $("rename").onclick=()=>renameLearner(l); $("printBtn").onclick=()=>printCard(l); $("kiosk").onclick=()=>enterKiosk(); $("remove").onclick=()=>removeLearner(l);
   // animate honey rising from previous level
   const lv=M.querySelector(".level"), prevP=lastPts[l.id];
-  if(lv&&prevP!==undefined&&prevP!==p){const target=lv.style.transform;const f0=Math.min(1,prevP/100);lv.style.transition="none";lv.style.transform=`translateY(${(8+196*(1-f0)-10).toFixed(1)}px)`;lv.getBoundingClientRect();lv.style.transition="";lv.style.transform=target}
+  if(lv&&prevP!==undefined&&prevP!==p){const target=lv.style.transform;const f0=Math.min(1,prevP/100);lv.style.transition="none";lv.style.transform=`translateY(${(honeyY(prevP)-10).toFixed(1)}px)`;lv.getBoundingClientRect();lv.style.transition="";lv.style.transform=target}
   lastPts[l.id]=p;
   if(openNum) fillSheet();
 }
@@ -568,7 +572,7 @@ function printCard(l){
   const p=pts(l), aw=awardOf(p), nx=nextOf(p), a=l.achieved||{};
   const today=new Date().toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"});
   const logo=root.querySelector(".brand .logo").outerHTML.replace(/class="logo"\s*/,"").replace(/ width="42" height="48"/,"");
-  const f=Math.min(1,p/100), y=(8+196*(1-f)).toFixed(1);
+  const y=honeyY(p).toFixed(1);
   const pmeter=`<svg viewBox="0 0 190 212" aria-hidden="true"><defs><clipPath id="pcclip"><polygon points="${hexPts(95,106,100)}"/></clipPath></defs><polygon points="${hexPts(95,106,100)}" fill="#EFEBE4"/><rect x="0" y="${y}" width="190" height="212" fill="#FF9A3C" clip-path="url(#pcclip)"/><polygon points="${hexPts(95,106,100)}" fill="none" stroke="#FE6505" stroke-width="7"/></svg>`;
   const ladder=AWARDS.map(([n,t,c])=>`<div>${badgeSvg(c,p>=t)}<b>${n==="Hustle 100 Graduate"?"Graduate":n}</b>${t} points</div>`).join("");
   const areas=AREAS.map(([name,col],ai)=>{let got=0;const cells=POS.map(([x,yy],i)=>{const n=ai*10+i+1,on=!!a[n];if(on)got++;
